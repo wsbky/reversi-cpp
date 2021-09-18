@@ -19,7 +19,7 @@ Board humam(Board current, bool turn, std::istream& is, std::ostream& os,
         os << (turn ? "●" : "○") << " (x y): ";
         is >> s1;
         if (s1 == 'p') {
-            ros << (turn ? "Black" : "White") << ": passed";
+            ros << (turn ? "Black" : "White") << ": passed\n";
             return current;
         }
         is >> s2;
@@ -30,7 +30,7 @@ Board humam(Board current, bool turn, std::istream& is, std::ostream& os,
 
         if (current.canPut(BitOperation::toBit(x - 1, y - 1), turn)) break;
     }
-    ros << (turn ? "Black" : "White") << ": " << x << " " << y << "\n ";
+    ros << (turn ? "Black" : "White") << ": " << x << " " << y << "\n";
     return current.put(BitOperation::toBit(x - 1, y - 1), turn);
 }
 }  // namespace player
@@ -50,6 +50,11 @@ void play(std::istream& is = std::cin, std::ostream& os = std::cout,
         current = player::humam(current, turn, is, os, ros);
         turn = !turn;
     }
+    if (current.judge() == 1) os << "● wins\n";
+    else if (current.judge() == -1)
+        os << "○ wins\n";
+    else
+        os << "Draw\n";
 }
 
 void play_com(std::istream& is = std::cin, std::ostream& os = std::cout,

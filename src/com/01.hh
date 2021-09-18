@@ -62,7 +62,7 @@ int evaluate(const Board& board, bool turn) {
     int b3 = BitOperation::popcount(board(turn) & positions3);
     int b4 = BitOperation::popcount(board(turn) & positions4);
 
-    int b = b1 * 10 + b2 * 6 + b3 * 3 - b4 * 10;
+    int b = b1 * 20 + b2 * 6 + b3 * 3 - b4 * 100;
     return a * 100 + b * 20;
 }
 
@@ -79,7 +79,7 @@ Board com1(Board current, bool turn, std::ostream& os, std::ostream& ros) {
         }
 
     os << (turn ? "●" : "○") << " (x y): " << x << " " << y << "\n";
-    ros << (turn ? "Black" : "White") << ": " << x << " " << y << "\n ";
+    ros << (turn ? "Black" : "White") << ": " << x << " " << y << "\n";
     return current.put(put, turn);
 }
 }  // namespace player
