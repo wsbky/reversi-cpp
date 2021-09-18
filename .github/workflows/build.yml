@@ -1,0 +1,41 @@
+name: Build
+
+on:
+  push:
+    paths-ignore:
+    - 'License'
+    - 'README.md'
+  pull_request:
+    paths-ignore:
+      - 'License'
+      - 'README.md'
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        cxx: [g++, clang++]
+    env:
+      cxx: ${{ matrix.cxx }}
+      workflow_src_dir: ${{ github.workspace }}
+      workflow_build_dir: ${{ github.workspace }}/build
+    defaults:
+      run:
+        working-directory: ${{env.workflow_build_dir}}
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      - name: Mkdir
+        working-directory: ${{env.workflow_src_dir}}
+        run: mkdir ${{env.workflow_build_dir}}
+
+      - name: Configure
+        run: cmake ${{env.workflow_src_dir}}
+      
+      - name: Build
+        run: cmake --build .
