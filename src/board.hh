@@ -47,7 +47,7 @@ class Board {
     board white;
 
   public:
-    Board(board black = 0x0000001008000000, board white = 0x0000000810000000)
+    Board(board black = 0x0000000810000000, board white = 0x0000001008000000)
         : black(black),
           white(white) {}
     Board(const Board& other) : black(other.black), white(other.white) {}
