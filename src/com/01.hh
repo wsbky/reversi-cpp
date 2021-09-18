@@ -71,7 +71,7 @@ int evaluate(const Board& board, bool turn) {
 namespace player {
 Board com1(Board current, bool turn, std::ostream& os, std::ostream& ros) {
     board put = com::search(current, turn, 6);
-    int x, y;
+    int x = -1, y = -1;
     for (int i = 0; i < 64; ++i)
         if (put >> i) {
             x = 8 - i % 8;

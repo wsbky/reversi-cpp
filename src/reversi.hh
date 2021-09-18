@@ -13,14 +13,17 @@ namespace player {
 Board humam(Board current, bool turn, std::istream& is, std::ostream& os,
             std::ostream& ros) {
     char s1, s2;
-    int x, y;
+    int x = -1, y = -1;
 
     for (;;) {
         os << (turn ? "●" : "○") << " (x y): ";
         is >> s1;
-        if (s1 == 'p') return current;
+        if (s1 == 'p') {
+            ros << (turn ? "Black" : "White") << ": passed";
+            return current;
+        }
         is >> s2;
-        if (std::isdigit(s1), std::isdigit(s2)) {
+        if (std::isdigit(s1) && std::isdigit(s2)) {
             x = s1 - '0';
             y = s2 - '0';
         }
