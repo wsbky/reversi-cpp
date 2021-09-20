@@ -6,6 +6,7 @@
 
 #include "board.hh"
 #include "evaluators/01.hh"
+#include "evaluators/02.hh"
 
 namespace reversi::com1 {
 
@@ -14,7 +15,7 @@ Evaluator evaluate = evaluator01::evaluate;
 int max_score = 10000;
 int min_score = -10000;
 
-void set(Evaluator& eval, int score_max = 10000, int score_min = -10000) {
+void set(Evaluator eval, int score_max = 10000, int score_min = -10000) {
     evaluate = eval;
     max_score = score_max;
     min_score = score_min;

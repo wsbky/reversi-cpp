@@ -37,7 +37,7 @@ void human(Board& current, bool turn, std::istream& is, std::ostream& os,
 
 void com(Search search, Board& current, bool turn, std::ostream& os,
          std::ostream& ros) {
-    board put = search(current, turn, 6);
+    board put = search(current, turn, 5);
     int x = -1, y = -1;
     for (int i = 0; i < 64; ++i)
         if (put >> i) {

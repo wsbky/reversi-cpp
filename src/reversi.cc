@@ -13,6 +13,7 @@ int main() {
     std::ofstream ofs;
     ofs.open("record.txt", std::ios::out);
 
+    reversi::com1::set(reversi::evaluator02::evaluate);
     reversi::playHvC(reversi::com1::search, std::cin, std::cout, ofs);
 
     return 0;
