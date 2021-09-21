@@ -24,9 +24,9 @@ struct searchMove {
 };
 
 std::vector<searchMove> moves = {
-    searchMove(1, 1, 1, 0),  searchMove(1, 1, 0, 1),  searchMove(1, 8, 1, 0),
-    searchMove(1, 8, 0, -1), searchMove(8, 1, -1, 0), searchMove(8, 1, 0, 1),
-    searchMove(8, 8, -1, 0), searchMove(8, 8, 0, -1),
+    searchMove(0, 0, 1, 0),  searchMove(0, 0, 0, 1),  searchMove(0, 7, 1, 0),
+    searchMove(0, 7, 0, -1), searchMove(7, 0, -1, 0), searchMove(7, 0, 0, 1),
+    searchMove(7, 7, -1, 0), searchMove(7, 7, 0, -1),
 };
 
 std::map<std::vector<bool>, int> scores = {

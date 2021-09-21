@@ -4,8 +4,6 @@
 
 namespace reversi {
 
-using Search = std::function<board(const Board&, bool, int)>;
-
 namespace player {
 
 void human(Board&, bool, std::istream&, std::ostream&, std::ostream&);
