@@ -4,9 +4,7 @@
 #include <functional>
 #include <vector>
 
-#include "board.hh"
-#include "evaluators/01.hh"
-#include "evaluators/02.hh"
+#include "../board.hh"
 
 namespace reversi {
 
