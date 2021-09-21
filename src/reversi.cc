@@ -4,16 +4,26 @@
 #include <iostream>
 
 int main() {
-    // reversi::Board a(0x0010240720260000, 0x000858f81c181400);
-    // std::cout << a.toString(true);
+    std::ofstream record;
+    record.open("record.txt", std::ios::out);
+    std::ofstream log;
+    log.open("playlog.txt", std::ios::out);
 
-    // a.put(reversi::BitOperation::toBit(3, 7), true);
-    // std::cout << a.toString(true, false);
+    reversi::com1 black(reversi::evaluator02::evaluate);
+    reversi::com1 white(reversi::evaluator02::evaluate);
 
-    std::ofstream ofs;
-    ofs.open("record.txt", std::ios::out);
+    reversi::Search bs = [&](const reversi::Board& a, bool b, int c) {
+        return black.search(a, b, c);
+    };
+    reversi::Search ws = [&](const reversi::Board& a, bool b, int c) {
+        return white.search(a, b, c);
+    };
 
-    reversi::playHvC(reversi::com1::search, std::cin, std::cout, ofs);
+    reversi::Reversi play(bs, ws, std::cin, std::cout, record);
+    // play.playCvC();
+    play.playHvC();
+    // play.playCvH();
+    // play.playHvH();
 
     return 0;
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <functional>
 #include <string>
 #include <vector>
 
@@ -197,4 +198,7 @@ class Board {
         return ret;
     }
 };
+
+using Evaluator = std::function<int(const Board&, bool)>;
+using Search = std::function<board(const Board&, bool, int)>;
 }  // namespace reversi
