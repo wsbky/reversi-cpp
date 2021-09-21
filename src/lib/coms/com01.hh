@@ -10,6 +10,7 @@ namespace reversi {
 
 class com1 {
     Evaluator ev;
+    int depth;
     int max_score = 10000;
     int min_score = -10000;
 
@@ -32,12 +33,13 @@ class com1 {
     }
 
   public:
-    com1(Evaluator e, int maxscore = 10000, int minscore = -10000)
+    com1(Evaluator e, int dep, int maxscore = 10000, int minscore = -10000)
         : ev(e),
+          depth(dep),
           max_score(maxscore),
           min_score(minscore) {}
 
-    board search(const Board& current, bool turn, int depth) {
+    board search(const Board& current, bool turn) {
         const std::vector<board> legalPuts = current.legalPuts(turn);
         std::vector<int> scores;
         scores.reserve(legalPuts.size());

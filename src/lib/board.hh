@@ -200,5 +200,5 @@ class Board {
 };
 
 using Evaluator = std::function<int(const Board&, bool)>;
-using Search = std::function<board(const Board&, bool, int)>;
+using Search = std::function<board(const Board&, bool)>;
 }  // namespace reversi

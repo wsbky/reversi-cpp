@@ -7,6 +7,7 @@
 
 #include "lib/board.hh"
 #include "lib/coms/com01.hh"
+#include "lib/coms/com02.hh"
 #include "lib/evaluators/01.hh"
 #include "lib/evaluators/02.hh"
 #include "lib/evaluators/03.hh"
