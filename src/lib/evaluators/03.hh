@@ -52,6 +52,22 @@ int firmPoint(const Board& current, bool turn) {
     return popcount(res);
 }
 
+int cornerPoint(const Board& current, bool turn) {
+    board my_board = current(turn);
+    board op_board = current(!turn);
+
+    return popcount(my_board & 0x8100000000000081) -
+           popcount(op_board & 0x8100000000000081);
+}
+
+int sidePoint(const Board& current, bool turn) {
+    board my_board = current(turn);
+    board op_board = current(!turn);
+
+    return popcount(my_board & 0x7e8181818181817e) -
+           popcount(op_board & 0x7e8181818181817e);
+}
+
 int patternPoint(const Board& current, bool turn) {
     int score_tmp = 0;
     board my_board = current(turn);
@@ -70,8 +86,10 @@ int evaluate(const Board& current, bool turn) {
     int b = patternPoint(current, turn);
     int c = popcount(current.legalBoard(turn)) -
             popcount(current.legalBoard(!turn));
+    int d = cornerPoint(current, turn);
+    int e = sidePoint(current, turn);
 
-    return 10 * a + 10 * b + c;
+    return 10 * a + 10 * b + c + 70 * d + 10 * e;
 }
 
 }  // namespace reversi::evaluator03

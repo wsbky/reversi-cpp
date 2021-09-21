@@ -17,6 +17,8 @@ class com2 {
     int depth_early;
     int depth_middle;
     int depth_final;
+    int switch_first;
+    int switch_second;
     int max_score = 10000;
     int min_score = -10000;
 
@@ -41,13 +43,16 @@ class com2 {
 
   public:
     com2(Evaluator early, Evaluator middle, Evaluator final, int d_early,
-         int d_middle, int d_final, int maxscore = 10000, int minscore = -10000)
+         int d_middle, int d_final, int switch1 = 12, int switch2 = 52,
+         int maxscore = 10000, int minscore = -10000)
         : ev_early(early),
           ev_middle(middle),
           ev_final(final),
           depth_early(d_early),
           depth_middle(d_middle),
           depth_final(d_final),
+          switch_first(switch1),
+          switch_second(switch2),
           max_score(maxscore),
           min_score(minscore) {}
 
@@ -60,10 +65,10 @@ class com2 {
         int depth;
         int count = popcount(current(turn) | current(!turn));
         std::cout << count << std::endl;
-        if (count < 12) {
+        if (count < switch_first) {
             ev = ev_early;
             depth = depth_early;
-        } else if (count < 52) {
+        } else if (count < switch_second) {
             ev = ev_middle;
             depth = depth_middle;
         } else {

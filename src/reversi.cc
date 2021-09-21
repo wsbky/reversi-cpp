@@ -13,14 +13,14 @@ int main() {
 
     com1 black(evaluator02::evaluate, 5);
     com2 white(evaluator02::evaluate, evaluator03::evaluate,
-               evaluatorMAX::evaluate, 5, 7, 12);
+               evaluatorMAX::evaluate, 5, 7, 12, 25);
 
     Search bs = [&](const Board& a, bool b) { return black.search(a, b); };
     Search ws = [&](const Board& a, bool b) { return white.search(a, b); };
 
     Reversi play(bs, ws, std::cin, std::cout, record);
-    play.playCvC();
-    // play.playHvC();
+    // play.playCvC();
+    play.playHvC();
     // play.playCvH();
     // play.playHvH();
 
